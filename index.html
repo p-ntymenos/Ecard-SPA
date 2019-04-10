@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<!--[if lte IE 8]>
+<script type="text/javascript">
+var mainUrl = window.location.hostname;
+location.assign('http://'+mainUrl+'/not-supported-device/');
+</script>
+<![endif]-->
+<html ng-app="bombApp" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Bombardier | Login</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- STYLES -->
+    <link rel="stylesheet" href="/includes/libs/js/bootstrap.min.css" />
+    <link rel="stylesheet" href="/includes/libs/js/animate.css" />
+    <link rel="stylesheet" href="/includes/libs/js/mCustomScrollbar.min.css" />
+    <link rel="stylesheet" href="https://ecard.bombardier.com/includes/ecard.bombardier.com.css" />
+
+    <!-- SCRIPTS -->
+    <!-- Angular 1.5.8 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.8.9/jquery.csv.min.js"></script>
+    <script src="/includes/libs/js/dropzone.js"></script>
+    <script src="/includes/libs/js/angular.min.js"></script>
+    <script src="/includes/libs/js/angular-route.min.js"></script>
+    <script src="/includes/libs/js/angular-sanitize.min.js"></script>
+    <script src="/includes/libs/js/angular-animate.min.js"></script>
+    <script src="/includes/libs/js/ng-tags-input.min.js"></script>
+    <script src="/includes/libs/js/ng-file-upload-all.min.js"></script>
+    <!-- Papa Parse v4.6.1 -->
+    <script src="/includes/libs/js/papaparse.min.js"></script>
+    <!-- Libraries -->
+    <script src="/includes/libs/js/jquery-3.1.1.min.js"></script>
+    <script src="/includes/libs/js/bootstrap.min.js"></script>
+    <script src="/includes/libs/js/select2.min.js"></script>
+    <script src="/includes/libs/js/htmltocanvas.js"></script>
+    <script src="/includes/libs/js/mCustomScrollbar.min.js"></script>
+    <script src="/includes/libs/js/jquery.matchHeight-min.js"></script>
+    <script src="https://ecard.bombardier.com/includes/ecard.bombardier.com.js"></script>
+
+</head>
+
+<body ng-controller="mainController"
+    ng-init='trans = {&quot;en&quot;:[],&quot;fr&quot;:{&quot;ENGLISH&quot;:&quot;ANGLAIS&quot;,&quot;FRENCH&quot;:&quot;FRAN\u00c7AIS&quot;,&quot;ECARD PLATFORM&quot;:&quot;PLATEFORME - CARTE \u00c9LECTRONIQUE&quot;,&quot;Choose a language&quot;:&quot;Choisir une langue&quot;,&quot;Choose a business segment&quot;:&quot;Choisir un secteur d&#x27;activit\u00e9&quot;,&quot;Company&quot;:&quot;Compagnie&quot;,&quot;Enter password to continue&quot;:&quot;Entrer le mot de passe pour continuer&quot;,&quot;Incorrect password&quot;:&quot;Mot de passe incorrect&quot;,&quot;LOGIN&quot;:&quot;S&#x27;IDENTIFIER&quot;,&quot;CONGRATULATIONS!&quot;:&quot;F\u00c9LICITATIONS!&quot;,&quot;Your ecard has been sent&quot;:&quot;Votre carte a \u00e9t\u00e9 envoy\u00e9e&quot;,&quot;You can track statistics of your sent emails&quot;:&quot;Vous pouvez faire le suivi de vos envois de carte&quot;,&quot;here&quot;:&quot;ici&quot;,&quot;SEND ANOTHER ECARD&quot;:&quot;ENVOYER UNE AUTRE CARTE&quot;,&quot;LOG OUT&quot;:&quot;SE D\u00c9CONNECTER&quot;,&quot;CHOOSE A CATEGORY&quot;:&quot;CHOISIR UNE CAT\u00c9GORIE&quot;,&quot;CHOOSE A DESIGN&quot;:&quot;CHOISIR UN MOD\u00c8LE&quot;,&quot;CHOOSE A GREETING&quot;:&quot;CHOISIR UN SOUHAIT&quot;,&quot;OPTIONAL&quot;:&quot;OPTIONNEL&quot;,&quot;PERSONALIZED MESSAGE&quot;:&quot;MESSAGE PERSONNALIS\u00c9&quot;,&quot;SEND YOUR ECARD&quot;:&quot;ENVOYEZ VOTRE CARTE&quot;,&quot;NEXT STEP&quot;:&quot;\u00c9TAPE SUIVANTE&quot;,&quot;PREVIOUS STEP&quot;:&quot;\u00c9TAPE PR\u00c9C\u00c9DENTE&quot;,&quot;Choose a design category&quot;:&quot;Choisir une cat\u00e9gorie de mod\u00e8les&quot;,&quot;PLANES &amp; TRAINS&quot;:&quot;AVIONS ET TRAINS&quot;,&quot;TRAINS&quot;:&quot;TRAINS&quot;,&quot;COMMERCIAL AIRCRAFT&quot;:&quot;AVIONS COMMERCIAUX&quot;,&quot;BUSINESS AIRCRAFT&quot;:&quot;AVIONS D&#x27;AFFAIRES&quot;,&quot;Happy Train Days&quot;:&quot;Achetez sur Amazon&quot;,&quot;Christmas Tree&quot;:&quot;Arbre de No\u00ebl&quot;,&quot;Many wishes with happy trains&quot;:&quot;Beaucoup de souhaits avec des sentiers heureux&quot;,&quot;Type a 3-5 word customized greeting&quot;:&quot;\u00c9crire un souhait personnalis\u00e9 de 3 \u00e0 5 mots&quot;,&quot;Max 50 characters&quot;:&quot;Max. 50 caract\u00e8res&quot;,&quot;Max 32 characters&quot;:&quot;Max. 32 caract\u00e8res&quot;,&quot;SKIP THIS STEP&quot;:&quot;SAUTER CETTE \u00c9TAPE&quot;,&quot;Add your personalized message&quot;:&quot;Ajoutez votre message personnalis\u00e9&quot;,&quot;Your name&quot;:&quot;Votre nom&quot;,&quot;Supported languages&quot;:&quot;Langues possibles&quot;,&quot;Arabic&quot;:&quot;Arabe&quot;,&quot;Chinese&quot;:&quot;Chinois&quot;,&quot;Czech&quot;:&quot;Tch\u00e8que&quot;,&quot;Dutch&quot;:&quot;N\u00e9erlandais&quot;,&quot;English&quot;:&quot;Anglais&quot;,&quot;French&quot;:&quot;Fran\u00e7ais&quot;,&quot;German&quot;:&quot;Allemand&quot;,&quot;Hungarian&quot;:&quot;Hongrois&quot;,&quot;Italian&quot;:&quot;Italien&quot;,&quot;Korean&quot;:&quot;Cor\u00e9en&quot;,&quot;Polish&quot;:&quot;Polonais&quot;,&quot;Portuguese&quot;:&quot;Portugais&quot;,&quot;Russian&quot;:&quot;Russe&quot;,&quot;Spanish&quot;:&quot;Espanol&quot;,&quot;Swedish&quot;:&quot;Su\u00e9dois&quot;,&quot;Thai&quot;:&quot;Tha\u00eflandais&quot;,&quot;Your Email Address&quot;:&quot;Votre adresse \u00e9lectronique&quot;,&quot;Email Subject&quot;:&quot;Sujet du courriel&quot;,&quot;Receiver(s) Email Address(es)&quot;:&quot;Adresse \u00e9lectronique du(des) destinataire(s)&quot;,&quot;ADD EMAIL&quot;:&quot;AJOUTER UN COURRIEL&quot;,&quot;ADD EMAILS&quot;:&quot;AJOUTER DES COURRIELS&quot;,&quot;or upload multiple Email Addresses from a CSV file&quot;:&quot;ou t\u00e9l\u00e9chargez plusieurs adresses courriel \u00e0 partir d&#x27;un fichier CSV&quot;,&quot;Email Addresses should be placed in the first column&quot;:&quot;Les adresses courriel doivent \u00eatre plac\u00e9es dans la premi\u00e8re colonne&quot;,&quot;Download a CSV example that you can use as a template.&quot;:&quot;T\u00e9l\u00e9chargez un exemple de fichier CSV et utilisez le comme mod\u00e8le.&quot;,&quot;SEND ECARD&quot;:&quot;ENVOYEZ VOTRE CARTE&quot;,&quot;OR&quot;:&quot;OU&quot;,&quot;Bombardier Inc.&quot;:&quot;Bombardier Inc.&quot;,&quot;Bombardier Business Aircraft&quot;:&quot;Bombardier Avions d&#x27;affaires&quot;,&quot;Bombardier Commercial Aircraft&quot;:&quot;Bombardier Avions commerciaux&quot;,&quot;C Series&quot;:&quot;C Series&quot;,&quot;Bombardier Transportation&quot;:&quot;Bombardier Transport&quot;,&quot;Bombardier Aerostructures and Engineering Services&quot;:&quot;Bombardier A\u00e9rostructures et Services d&#x27;ing\u00e9nierie&quot;,&quot;Product Development Engineering, Aerospace&quot;:&quot;Ing\u00e9nierie et D\u00e9veloppement de produits, A\u00e9ronautique&quot;,&quot;Shared Services&quot;:&quot;Services partag\u00e9s&quot;,&quot;Please add sender&#x27;s email&quot;:&quot;Veuillez ajouter le courriel de l&#x27;exp\u00e9diteur&quot;,&quot;Please check email sender&#x27;s format&quot;:&quot;Veuillez v\u00e9rifier le format de l&#x27;adresse \u00e9lectronique&quot;,&quot;Please add a subject&quot;:&quot;Veuillez ajouter un sujet de courriel&quot;,&quot;Please add recipient&quot;:&quot;Veuillez ajouter des destinataires&quot;,&quot;notvalidemail&quot;:&quot;n&#x27;est pas une adresse valide. &lt;br&gt; Formats valides:&quot;,&quot;Click an icon to add it in your subject&quot;:&quot;Cliquez sur une ic\u00f4ne pour l&#x27;ajouter dans votre sujet&quot;}}'
+    class="bg-forest">
+
+
+
+
+    <span>
+    </span>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="login-box-wrapper">
+                    <div class="login-box">
+
+                        <div class="row mb-50">
+                            <h3 class="text-center"><strong>{[{ 'ECARD PLATFORM' | translate:this }]}</strong></h3>
+                        </div>
+
+                        <div class="row mb-30">
+                            <div class="col-md-12">
+                                <label>{[{ 'Choose a language' | translate:this }]}</label>
+                                <div id="languageBtn" class="btn-group" role="group">
+                                    <button type="button" ng-click="switchLanguage('en')" data-val="en" class="btn">{[{
+                                        'ENGLISH' | translate:this }]}</button>
+                                    <button type="button" ng-click="switchLanguage('fr')" data-val="fr" class="btn">{[{
+                                        'FRENCH' | translate:this }]}</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-60">
+                            <div class="col-md-12">
+                                <form id="F0584611001476434930" enctype="multipart/form-data" method="POST"
+                                    action="https://ecard.bombardier.com/elementAjax/1" novalidate="novalidate">
+                                    <input type="hidden" name="XPR_PostbackAction" value="ΒΜΒ-UserLoginForm" />
+
+                                    <div style="display:none;">
+                                        <select id="UserLanguage" name="UserLanguage">
+                                            <option value="en">en</option>
+                                            <option value="fr">fr</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="UserLogin" class="control-label">{[{ 'Company' | translate:this
+                                            }]}</label>
+                                        <select id="UserLogin" name="UserLogin" ng-class="">
+                                            <!--<option></option>-->
+                                            <!--<option value="greece">Greece</option>-->
+                                            <option value="bombardier_inc">{[{ 'Bombardier Inc. ' | translate:this }]}
+                                            </option>
+                                        </select>
+                                    </div>
+
+
+                                    <div class="form-group mb-30">
+                                        <label for="UserPassword">{[{ 'Enter password to continue' | translate:this
+                                            }]}</label>
+                                        <input type="password" id="UserPassword" name="UserPassword" value=""
+                                            required="" class="">
+                                    </div>
+
+                                    <button type="submit" class="btn btn-block">{[{ 'LOGIN' | translate:this
+                                        }]}</button>
+
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="text-center">
+                                <img src="/media/logo.png">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $('select').select2({
+
+            minimumResultsForSearch: Infinity
+
+        });
+    </script>
+
+
+
+
+</body>
+
+</html>
